@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
     private val TAG = "MainActivity"
 
-    var countDownTimer = object : CountDownTimer(100000, 100) {
+    var countDownTimer = object : CountDownTimer(100000, 50) {
         override fun onTick(p0: Long) {
             val lotteryList = arrayListOf(number11, number12, number13, number14, number15, number16)
             lotteryList.forEach {
