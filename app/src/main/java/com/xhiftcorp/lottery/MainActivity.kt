@@ -1,5 +1,6 @@
 package com.xhiftcorp.lottery
 
+import android.animation.Animator
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -10,7 +11,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
     private val TAG = "MainActivity"
 
-    var countDownTimer = object : CountDownTimer(2000, 100) {
+    var countDownTimer = object : CountDownTimer(100000, 100) {
         override fun onTick(p0: Long) {
             val lotteryList = arrayListOf(number11, number12, number13, number14, number15, number16)
             lotteryList.forEach {
@@ -28,22 +29,29 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-
         lotteryWhirl.setOnClickListener {
-            if (!lotteryWhirl.isAnimating) {
-                lotteryWhirl.playAnimation();
+            if (lotteryWhirl.isAnimating) {
+                lotteryWhirl.cancelAnimation()
+                countDownTimer.cancel()
+            } else {
+                lotteryWhirl.playAnimation()
                 countDownTimer.start()
-                //shuffleLotteryNumber()
             }
         }
 
+        lotteryWhirl.addAnimatorListener(object: Animator.AnimatorListener {
+            override fun onAnimationStart(p0: Animator?) {
+            }
 
+            override fun onAnimationEnd(p0: Animator?) {
+                countDownTimer.cancel()
+            }
+
+            override fun onAnimationCancel(p0: Animator?) {
+            }
+
+            override fun onAnimationRepeat(p0: Animator?) {
+            }
+        })
     }
-
-//    fun shuffleLotteryNumber() {
-//        lotteryList.forEach {
-//            it.setText("TEST")
-//        }
-//    }
 }
