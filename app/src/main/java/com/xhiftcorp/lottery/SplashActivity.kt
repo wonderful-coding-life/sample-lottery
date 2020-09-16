@@ -20,7 +20,7 @@ class SplashActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-        val handler = Handler(Looper.getMainLooper());
+        val handler = Handler(Looper.getMainLooper())
         handler.postDelayed(runnable, 3000)
 
         animationView.setOnClickListener {
