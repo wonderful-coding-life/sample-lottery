@@ -15,13 +15,11 @@ class MainActivity : AppCompatActivity() {
         override fun onTick(p0: Long) {
             val lotteryList = arrayListOf(number11, number12, number13, number14, number15, number16)
             lotteryList.forEach {
-                it.setText("" + ((Math.random() * 45).toInt() + 1));
+                it.setText("${((Math.random() * 45).toInt() + 1)}");
             }
-            Log.i(TAG, "onTick: " + p0)
         }
 
         override fun onFinish() {
-            Log.i(TAG, "onFinish: ")
         }
     }
 
