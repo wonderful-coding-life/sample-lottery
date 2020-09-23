@@ -18,8 +18,16 @@ class MainActivity : AppCompatActivity() {
         val countDownTimer = object : CountDownTimer(3000, 100) {
             override fun onTick(p0: Long) {
                 val lotteryList = arrayListOf(number11, number12, number13, number14, number15, number16)
-                lotteryList.forEach {
-                    it.text = "${((Math.random() * 45).toInt() + 1)}"
+                val numberArray = IntArray(6)
+                lotteryList.forEachIndexed {index, textView ->
+                    while (true) {
+                        val randomNumber = (Math.random() * 45 + 1).toInt()
+                        if (!numberArray.contains(randomNumber)) {
+                            numberArray[index] = randomNumber
+                            break;
+                        }
+                    }
+                    textView.text = "${numberArray[index]}"
                 }
             }
 
